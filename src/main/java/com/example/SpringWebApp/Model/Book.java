@@ -2,6 +2,7 @@ package com.example.SpringWebApp.Model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,30 @@ public class Book {
     @ManyToMany
     @JoinTable (name="author_book",joinColumns= {@JoinColumn (name="book_id")},inverseJoinColumns = {@JoinColumn(name = "author_id")})
     private Set<Author> authors = new HashSet<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book)) return false;
+        Book book = (Book) o;
+        return Objects.equals(id, book.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", pubLisher='" + pubLisher + '\'' +
+                ", authors=" + authors +
+                '}';
+    }
 
     public Long getId() {
         return id;
