@@ -1,0 +1,2 @@
+H2 BASE DE DONNE
+jdbc:h2:mem:testdb
