@@ -12,9 +12,10 @@ public class Book {
     private Long id;
     private String title;
     private String isbn;
-    private String pubLisher;
+    @OneToOne
+    private PubLisher pubLisher;
     @ManyToMany
-    @JoinTable (name="author_book",joinColumns= {@JoinColumn (name="book_id")},inverseJoinColumns = {@JoinColumn(name = "author_id")})
+    @JoinTable(name = "author_book", joinColumns = {@JoinColumn(name = "book_id")}, inverseJoinColumns = {@JoinColumn(name = "author_id")})
     private Set<Author> authors = new HashSet<>();
 
     @Override
@@ -52,13 +53,13 @@ public class Book {
     public Book() {
     }
 
-    public Book(String title, String isbn, String pubLisher) {
+    public Book(String title, String isbn, PubLisher pubLisher) {
         this.title = title;
         this.isbn = isbn;
         this.pubLisher = pubLisher;
     }
 
-    public Book(String title, String isbn, String pubLisher, Set<Author> authors) {
+    public Book(String title, String isbn, PubLisher pubLisher, Set<Author> authors) {
         this.title = title;
         this.isbn = isbn;
         this.pubLisher = pubLisher;
@@ -81,11 +82,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public String getPubLisher() {
+    public PubLisher getPubLisher() {
         return pubLisher;
     }
 
-    public void setPubLisher(String pubLisher) {
+    public void setPubLisher(PubLisher pubLisher) {
         this.pubLisher = pubLisher;
     }
 
